@@ -1,17 +1,22 @@
 <script>
+import { store, api } from "./store";
 import axios from "axios";
+import AppHeader from "./components/AppHeader.vue";
+import AppMain from "./components/AppMain.vue";
 
 export default {
   data() {
     return {
       title: "Boolfolio",
-      projects: [],
+      store,
+      api,
     };
   },
+  components: { AppHeader, AppMain },
   methods: {
     fetchProjects() {
-      axios.get("http://127.0.0.1:8000/api/projects").then((response) => {
-        this.projects = response.data.data;
+      axios.get(api.apiURI).then((response) => {
+        store.projects = response.data.data;
       });
     },
   },
@@ -22,11 +27,8 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <h1>
-      {{ title }}
-    </h1>
-  </div>
+  <app-header :title="title" />
+  <app-main />
 </template>
 
 <style lang="scss">
