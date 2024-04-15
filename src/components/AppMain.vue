@@ -13,7 +13,7 @@ export default {
   },
   components: { ProjectCard },
   methods: {
-    fetchProjects(endpoint = api.apiURI) {
+    fetchProjects(endpoint = api.apiURI + "projects") {
       axios.get(endpoint).then((response) => {
         store.projects = response.data.data;
         store.pagination = response.data.links;
@@ -45,7 +45,11 @@ export default {
       </ul>
     </nav>
     <div class="row row-cols-4 g-3">
-      <project-card v-for="project in store.projects" :project="project" />
+      <project-card
+        v-for="project in store.projects"
+        :project="project"
+        :isDetail="false"
+      />
     </div>
   </div>
 </template>

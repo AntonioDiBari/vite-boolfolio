@@ -3,7 +3,7 @@ export default {
   data() {
     return {};
   },
-  props: { project: Object },
+  props: { project: Object, isDetail: Boolean },
 
   computed: {
     abstract() {
@@ -17,11 +17,10 @@ export default {
 
 <template>
   <div class="col">
-    <div class="card h-100" style="width: 18rem">
+    <div class="card h-100">
       <img
         :src="project.image ? project.image : 'https://placehold.co/600x400'"
         class="card-img-top"
-        alt="..."
       />
       <div class="card-body">
         <h5 class="card-title">{{ project.name }}</h5>
@@ -44,10 +43,15 @@ export default {
           >
         </div>
         <p v-if="project.description" class="card-text">
-          {{ abstract }}
+          {{ !isDetail ? abstract : project.description }}
         </p>
         <div v-else class="mt-3"></div>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <router-link
+          v-if="!isDetail"
+          :to="{ name: 'project.detail', params: { id: project.id } }"
+          class="btn btn-primary"
+          >More info</router-link
+        >
       </div>
     </div>
   </div>
