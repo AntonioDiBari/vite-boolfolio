@@ -36,7 +36,11 @@ export default {
           :class="{ active: link.active, disabled: !link.url }"
           class="page-item"
         >
-          <a class="page-link" href="#" v-html="link.label"></a>
+          <a
+            class="page-link"
+            href="javascript:void(0)"
+            v-html="link.label"
+          ></a>
         </li>
       </ul>
     </nav>
@@ -46,4 +50,4 @@ export default {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>
