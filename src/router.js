@@ -24,6 +24,11 @@ const router = createRouter({
       component: ProjectDetailPage,
     },
     {
+      path: "/type/:type_id",
+      name: "project.filter-by-type",
+      component: ProjectPage,
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "not-found",
       component: NotFoundPage,

@@ -27,12 +27,16 @@ export default {
         <span class="card-subtitle fst-italic d-block">{{
           project.author
         }}</span>
-        <div
+        <router-link
+          :to="{
+            name: 'project.filter-by-type',
+            params: { type_id: project.type.id },
+          }"
           class="badge mb-3"
           :style="'background-color:' + project.type.color"
         >
           {{ project.type.name }}
-        </div>
+        </router-link>
         <div>
           <span
             v-for="technology in project.technologies"

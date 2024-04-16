@@ -18,7 +18,6 @@ export default {
       if (response.data.success) {
         this.project = response.data.result;
       } else {
-        console.log(response.data.message);
         store.errorData = response.data.message;
         this.$router.push({ name: "not-found" });
       }
