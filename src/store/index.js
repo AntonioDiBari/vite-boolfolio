@@ -7,4 +7,5 @@ export const api = {
 export const store = reactive({
   projects: [],
   pagination: [],
+  errorData: null,
 });

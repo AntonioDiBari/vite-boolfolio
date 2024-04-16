@@ -1,12 +1,13 @@
 <script>
 import axios from "axios";
-import { api } from "../store";
+import { api, store } from "../store";
 import ProjectCard from "../components/ProjectCard.vue";
 
 export default {
   data() {
     return {
       api,
+      store,
       project: null,
     };
   },
@@ -14,7 +15,13 @@ export default {
   created() {
     const projectId = this.$route.params.id;
     axios.get(api.apiURI + "projects/" + projectId).then((response) => {
-      this.project = response.data;
+      if (response.data.success) {
+        this.project = response.data.result;
+      } else {
+        console.log(response.data.message);
+        store.errorData = response.data.message;
+        this.$router.push({ name: "not-found" });
+      }
     });
   },
 };
